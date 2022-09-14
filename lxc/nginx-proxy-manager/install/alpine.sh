@@ -8,7 +8,8 @@ TEMPERR="$TEMPDIR/tmperr"
 LASTCMD=""
 WGETOPT="-t 1 -T 15 -q"
 DEVDEPS="npm g++ make gcc git python3-dev musl-dev libffi-dev openssl-dev"
-NPMURL="https://api.github.com/repos/NginxProxyManager/nginx-proxy-manager"
+NPMURLVER="https://api.github.com/repos/NginxProxyManager/nginx-proxy-manager"
+NPMURL="https://github.com/NginxProxyManager/nginx-proxy-manager"
 
 cd $TEMPDIR
 touch $TEMPLOG
@@ -101,7 +102,7 @@ runcmd pip3 install --no-cache-dir cffi certbot
 
 log "Checking for latest NPM release"
 # Get latest version information for nginx-proxy-manager
-_latest_version=$(curl -s $NPMURL/releases/latest | sed -Ene '/^ *"tag_name": *"(v.+)",$/s//\1/p')
+_latest_version=$(curl -s $NPMURLVER/releases/latest | sed -Ene '/^ *"tag_name": *"(v.+)",$/s//\1/p' | cut -c 2-)
 
 # Download nginx-proxy-manager source
 log "Downloading NPM v$_latest_version"
