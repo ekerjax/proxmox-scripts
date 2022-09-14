@@ -11,7 +11,8 @@ TEMPERR="$TEMPDIR/tmperr"
 LASTCMD=""
 WGETOPT="-t 1 -T 15 -q"
 DEVDEPS="git build-essential libffi-dev libssl-dev python3-dev"
-NPMURL="https://api.github.com/repos/NginxProxyManager/nginx-proxy-manager"
+NPMURLVER="https://api.github.com/repos/NginxProxyManager/nginx-proxy-manager"
+NPMURL="https://github.com/NginxProxyManager/nginx-proxy-manager"
 
 cd $TEMPDIR
 touch $TEMPLOG
@@ -105,7 +106,7 @@ runcmd npm install --global yarn
 
 # Get latest version information for nginx-proxy-manager
 log "Checking for latest NPM release"
-_latest_version=$(curl -s $NPMURL/releases/latest | sed -Ene '/^ *"tag_name": *"(v.+)",$/s//\1/p' | cut -c 2-)
+_latest_version=$(curl -s $NPMURLVER/releases/latest | sed -Ene '/^ *"tag_name": *"(v.+)",$/s//\1/p' | cut -c 2-)
 
 # Download nginx-proxy-manager source
 log "Downloading NPM v$_latest_version"
