@@ -102,7 +102,7 @@ runcmd pip3 install --no-cache-dir cffi certbot
 
 log "Checking for latest NPM release"
 # Get latest version information for nginx-proxy-manager
-_latest_version=$(curl -s $NPMURLVER/releases/latest | sed -Ene '/^ *"tag_name": *"(v.+)",$/s//\1/p' | cut -c 2-)
+_latest_version="2.9.18"
 
 # Download nginx-proxy-manager source
 log "Downloading NPM v$_latest_version"
